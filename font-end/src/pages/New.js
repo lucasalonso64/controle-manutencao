@@ -9,6 +9,7 @@ class New extends Component {
         kmatual: '',
         quantidadelitro: '',
         valorlitro: '',
+        kmrodado: '',
 
     }
 
@@ -20,6 +21,7 @@ class New extends Component {
         data.append('kmatual', this.state.kmatual);
         data.append('quantidadelitro', this.state.quantidadelitro);
         data.append('valorlitro', this.state.valorlitro);
+        data.append('kmrodado', this.state.kmrodado);
 
         await api.post('posts', data)
 
@@ -32,6 +34,10 @@ class New extends Component {
     // handleImageChange = e => {
     //     this.setState({ image: e.target.files[0] });
     // }
+    calcular() {
+        let kmrodado = parseInt(this.state.kmatual) - parseInt(this.state.kmabastecimento)
+        this.setState({ kmrodado })
+    }
 
 
     handleChange = e => {
@@ -41,44 +47,58 @@ class New extends Component {
 
     render() {
         return (
-            <form id="new-post" onSubmit={this.handleSubmit}>
+            <div>
+                <form id="new-post" onSubmit={this.handleSubmit}>
 
-                <input type="file" onChange={this.handleImageChange} />
+                    <input type="file" onChange={this.handleImageChange} />
 
-                <input
-                    type="text"
-                    name="kmabastecimento"
-                    placeholder="Km de abastecimento"
-                    onChange={this.handleChange}
-                    value={this.state.kmabastecimento}
-                />
+                    <input
+                        type="text"
+                        name="kmabastecimento"
+                        placeholder="Km de abastecimento"
+                        onChange={this.handleChange}
+                        value={this.state.kmabastecimento}
+                    />
 
-                <input
-                    type="text"
-                    name="kmatual"
-                    placeholder="km atual"
-                    onChange={this.handleChange}
-                    value={this.state.kmatual} />
+                    <input
+                        type="text"
+                        name="kmatual"
+                        placeholder="km atual"
+                        onChange={this.handleChange}
+                        value={this.state.kmatual} />
 
-                <input
-                    type="text"
-                    name="quantidadelitro"
-                    placeholder="Quantidade de litro"
-                    onChange={this.handleChange}
-                    value={this.state.quantidadelitro}
-                />
+                    <input
+                        type="text"
+                        name="kmrodado"
+                        placeholder="km rodado"
+                        onChange={this.handleChange}
+                        value={this.state.kmrodado} />
 
-                <input
-                    type="text"
-                    name="valorlitro"
-                    placeholder="Valor do litro"
-                    onChange={this.handleChange}
-                    value={this.state.valorlitro}
-                />
-                <button type="submit">Processar</button>
-                <br></br>
-                <button type="submit">Enviar</button>
-            </form>
+                    <input
+                        type="text"
+                        name="quantidadelitro"
+                        placeholder="Quantidade de litro"
+                        onChange={this.handleChange}
+                        value={this.state.quantidadelitro}
+                    />
+
+                    <input
+                        type="text"
+                        name="valorlitro"
+                        placeholder="Valor do litro"
+                        onChange={this.handleChange}
+                        value={this.state.valorlitro}
+                    />
+
+
+                    <br></br>
+                    <button type="submit">Salvar</button>
+                </form>
+                <div id="calcular">
+                    <button onClick={this.calcular.bind(this)} >Calcular</button>
+                </div>
+
+            </div>
         );
     }
 }

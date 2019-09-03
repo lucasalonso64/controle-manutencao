@@ -55,6 +55,7 @@ class Feed extends Component {
                                 <span className="place"> QUANTIDADE: {post.kmatual}</span>
                                 <span className="place"> VALOR LITRO: {post.valorlitro}</span>
                                 <span className="place"> DATA ABASTECIMENTO: {post.createdAt}</span>
+                                <span className="place"> KM RODADO: {post.kmrodado} KM</span>
                             </div>                           
                         </header>                   
 

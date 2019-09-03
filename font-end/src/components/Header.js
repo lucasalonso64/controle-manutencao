@@ -10,10 +10,12 @@ export default function Header() {
         <header id="main-header">
             <div className="header-content">
                 <Link to="/">
-                <img src={logo} alt="InstRocket" />
+                <button type="submit">Consulta</button>
+           
                 </Link>
                 <Link to="/new">                
-                <img src={camera} alt="Enviar puclicação" />
+         
+                <button type="submit">Cadastro</button>
                 </Link>
             </div>
         </header>

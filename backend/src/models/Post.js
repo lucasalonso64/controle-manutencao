@@ -5,12 +5,7 @@ const PostSchema = new mongoose.Schema({
     kmatual: Number,
     quantidadelitro: Number,
     valorlitro: Number,
-    // image: String,
-    // likes: {
-    //     type: Number,
-    //     default: 0,
-  //  }
-
+    kmrodado: Number,
 }, {
     timestamps: true,
 });
