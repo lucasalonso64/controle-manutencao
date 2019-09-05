@@ -13,15 +13,14 @@ module.exports = {
     },
     async store(req, res){
 
-       const {kmabastecimento,kmatual,quantidadelitro,valorlitro,kmrodado } = req.body;
+       const { kmtroca,kmptroca,kmatual, dataptroca} = req.body;
 
 
        const post = await Post.create({
-           kmabastecimento,
-           kmatual,
-           quantidadelitro,
-           valorlitro,
-          kmrodado,
+        kmtroca,
+        kmptroca,
+        kmatual,
+        dataptroca,
        })
 
 

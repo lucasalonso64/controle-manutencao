@@ -24,25 +24,11 @@ class Feed extends Component {
 
     registerToSocket = () => {
         const socket = io('http://localhost:3333');
-
-        // post, 
         socket.on('post', newPost => {
             this.setState({ feed: [newPost, ...this.state.feed]  })
         })
-        // socket.on('like', likePost => {
-        //     this.setState({
-        //         feed: this.state.feed.map(post => 
-        //             post._id == likePost._id ? likePost : post)
 
-        //     })
-        // })
     }
-
-    handleLike = id => {
-        api.post(`/posts/${id}/like`);
-    }
-
-
     render() {
         return (
             <section id="post-list">
@@ -50,12 +36,12 @@ class Feed extends Component {
                     <article key={post._id}>
                         <header>
                             <div className="user-info">
-                                <span className="place">KM ABASTECIMENTO: {post.kmabastecimento}</span>
-                                <span className="place"> KM ATUAL: {post.kmatual}</span>
-                                <span className="place"> QUANTIDADE: {post.kmatual}</span>
-                                <span className="place"> VALOR LITRO: {post.valorlitro}</span>
-                                <span className="place"> DATA ABASTECIMENTO: {post.createdAt}</span>
-                                <span className="place"> KM RODADO: {post.kmrodado} KM</span>
+                            <span className="place"> DATA DA TROCA: {post.createdAt}</span>
+                                <span className="place">TROCADO COM: {post.kmtroca} km</span>
+                                <span className="place">PRÓXIMA TROCA: {post.kmptroca} km</span>
+                                <span className="place"> DATA PROXIMA TROCA: {post.dataptroca}</span>                           
+                             
+                        
                             </div>                           
                         </header>                   
 

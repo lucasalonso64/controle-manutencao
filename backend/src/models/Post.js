@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
 
 const PostSchema = new mongoose.Schema({
-    kmabastecimento: Number,
+    kmtroca: Number,
+    kmptroca: Number,
     kmatual: Number,
-    quantidadelitro: Number,
-    valorlitro: Number,
-    kmrodado: Number,
+    dataptroca: String,
 }, {
     timestamps: true,
 });

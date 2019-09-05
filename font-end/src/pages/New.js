@@ -5,91 +5,76 @@ import { async } from 'q';
 
 class New extends Component {
     state = {
-        kmabastecimento: '',
-        kmatual: '',
-        quantidadelitro: '',
-        valorlitro: '',
-        kmrodado: '',
-
+        kmtroca: '',
+        kmptroca: '',
+        dataptroca: '',
     }
 
     handleSubmit = async e => {
         e.preventDefault();
 
         const data = new FormData();
-        data.append('kmabastecimento', this.state.kmabastecimento);
-        data.append('kmatual', this.state.kmatual);
-        data.append('quantidadelitro', this.state.quantidadelitro);
-        data.append('valorlitro', this.state.valorlitro);
-        data.append('kmrodado', this.state.kmrodado);
+        data.append('kmtroca', this.state.kmtroca);
+        data.append('kmptroca', this.state.kmptroca);
+        data.append('dataptroca', this.state.dataptroca);
 
         await api.post('posts', data)
 
         this.props.history.push('/');
-
-
-
     }
-
-    // handleImageChange = e => {
-    //     this.setState({ image: e.target.files[0] });
-    // }
     calcular() {
-        let kmrodado = parseInt(this.state.kmatual) - parseInt(this.state.kmabastecimento)
-        this.setState({ kmrodado })
+        let kmptroca = parseInt(this.state.kmtroca) + 1000
+        this.setState({ kmptroca })
+
+        this.calculaDias()
     }
 
+    calculaDias() {
+        // let date1 = new Date        
+        //     ( date1.getDay() -14)
+        // this.setState({ date1 })
 
+        var dataptroca = new Date();
+
+        //document.write('Hoje é: ' + date1.toLocaleString());
+
+        dataptroca.setDate(dataptroca.getDate() + 15);
+        this.setState({ dataptroca })
+
+       // document.write('<br>14 dias atrás: ' + date1.toLocaleString());
+
+    }
     handleChange = e => {
         this.setState({ [e.target.name]: e.target.value });
     }
-
 
     render() {
         return (
             <div>
                 <form id="new-post" onSubmit={this.handleSubmit}>
-
-                    <input type="file" onChange={this.handleImageChange} />
-
+                    <label>Trocado com:</label>
                     <input
                         type="text"
-                        name="kmabastecimento"
-                        placeholder="Km de abastecimento"
+                        name="kmtroca"
+                        placeholder="Trocado com"
                         onChange={this.handleChange}
-                        value={this.state.kmabastecimento}
+                        value={this.state.kmtroca}
                     />
+                    <label>Próxima troca:</label>
+                    <input
+                        type="text"
+                        name="kmptroca"
+                        placeholder="Próxima troca"
+                        onChange={this.handleChange}
+                        value={this.state.kmptroca} />
 
                     <input
                         type="text"
-                        name="kmatual"
-                        placeholder="km atual"
+                        name="now"
+                        placeholder="Data próxima troca:"
                         onChange={this.handleChange}
-                        value={this.state.kmatual} />
-
-                    <input
-                        type="text"
-                        name="kmrodado"
-                        placeholder="km rodado"
-                        onChange={this.handleChange}
-                        value={this.state.kmrodado} />
-
-                    <input
-                        type="text"
-                        name="quantidadelitro"
-                        placeholder="Quantidade de litro"
-                        onChange={this.handleChange}
-                        value={this.state.quantidadelitro}
+                        value={this.state.dataptroca}
                     />
-
-                    <input
-                        type="text"
-                        name="valorlitro"
-                        placeholder="Valor do litro"
-                        onChange={this.handleChange}
-                        value={this.state.valorlitro}
-                    />
-
 
                     <br></br>
                     <button type="submit">Salvar</button>
@@ -97,7 +82,6 @@ class New extends Component {
                 <div id="calcular">
                     <button onClick={this.calcular.bind(this)} >Calcular</button>
                 </div>
-
             </div>
         );
     }
