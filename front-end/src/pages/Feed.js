@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import api from '../services/api';
 import io from 'socket.io-client';
+import Joi from "joi-browser";
 
 import './Feed.css'
 
